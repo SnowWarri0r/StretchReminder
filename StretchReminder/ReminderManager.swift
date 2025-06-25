@@ -85,11 +85,13 @@ class ReminderManager: ObservableObject {
         delegate?.reminderDidStartStretch()
         // 1. SwiftUI 视图
         let overlay = FloatingReminderView(message: "🕒 该起来活动啦！")
-            .frame(minWidth: 200, minHeight: 50)
         
         // 2. 托管到 NSHostingController
         let host = NSHostingController(rootView: overlay)
-        let size = host.view.fittingSize
+        host.view.wantsLayer = true
+        host.view.layer?.backgroundColor = CGColor.clear
+        host.view.layer?.isOpaque = false
+        let size = CGSize(width: 300, height: 100)
         
         // 3. 居中计算
         let screen = NSScreen.main?.visibleFrame ?? .zero
@@ -109,9 +111,14 @@ class ReminderManager: ObservableObject {
         )
         window.isOpaque = false
         window.backgroundColor = .clear
-        window.hasShadow = true
+        window.hasShadow = false
         window.level = .floating
+        window.ignoresMouseEvents = true
+        
         window.contentView = host.view
+        window.contentView?.wantsLayer = true
+        window.contentView?.layer?.backgroundColor = CGColor.clear
+        
         window.alphaValue = 0  // 初始全透明
         
         // 5. 强引用并显示
