@@ -58,12 +58,17 @@ jobs:
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
 
           # 构建 Release
-          xcodebuild -scheme "$scheme" -configuration Release -"$filetype_parameter" "$file_to_build" -derivedDataPath build
+          xcodebuild -scheme "$scheme" \
+            -configuration Release \
+            -"$filetype_parameter" "$file_to_build" \
+            -derivedDataPath build \
+            ARCHS="arm64 x86_64" \
+            ONLY_ACTIVE_ARCH=NO
 
       - name: Package .app
         run: |
           APP_PATH="build/Build/Products/Release/*.app"
-          ZIP_NAME="App-${{ github.ref_name }}.zip"
+          ZIP_NAME="StretchReminder-universal-${{ github.ref_name }}.zip"
           ditto -c -k --sequesterRsrc --keepParent $APP_PATH $ZIP_NAME
           echo "ZIPPED_FILE=$ZIP_NAME" >> $GITHUB_ENV
 
