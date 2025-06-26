@@ -78,12 +78,13 @@ jobs:
         run: |
           curl -L -o sparkle.tar.xz \
             "https://github.com/sparkle-project/Sparkle/releases/download/$SPARKLE_VERSION/Sparkle-$SPARKLE_VERSION.tar.xz"
-          tar -xf sparkle.tar.xz
+          mkdir -p sparkle
+          tar -xf sparkle.tar.xz -C sparkle
 
       - name: Generate appcast.xml
         env:
           PRIVATE_KEY_SECRET: ${{ secrets.SPARKLE_EDDSA_PRIVATE_KEY }}
-          SPARKLE_DIR: "Sparkle-${{ env.SPARKLE_VERSION }}"
+          SPARKLE_DIR: "sparkle"
         run: |
           chmod +x "$SPARKLE_DIR/bin/generate_appcast"
           mkdir -p updates
