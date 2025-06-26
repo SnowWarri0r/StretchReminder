@@ -1,16 +1,32 @@
 import AppKit
 import ServiceManagement
+import UserNotifications
 import Sparkle
+
+extension StatusBarController: SPUUpdaterDelegate {
+    func updater(_ updater: SPUUpdater, didFindValidUpdate item: SUAppcastItem) {
+        // 在后台检测到有更新时提醒用户
+        let content = UNMutableNotificationContent()
+        content.title = "StretchReminder 有新版本"
+        content.body = "点击菜单栏中的“检查更新”来安装最新版。"
+        content.sound = .default
+        
+        let request = UNNotificationRequest(identifier: "UpdateReminder", content: content, trigger: nil)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+}
 
 class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelegate {
     private var statusItem: NSStatusItem!
     private var reminderManager: ReminderManager
     private var countdownItem: NSMenuItem!
-    private let updater = SPUStandardUpdaterController(
-        startingUpdater: true,
-        updaterDelegate: nil,
-        userDriverDelegate: nil
-    )
+    private lazy var updater: SPUStandardUpdaterController = {
+        return SPUStandardUpdaterController(
+            startingUpdater: true,
+            updaterDelegate: self,
+            userDriverDelegate: nil
+        )
+    }()
     
     init(reminderManager: ReminderManager) {
         self.reminderManager = reminderManager

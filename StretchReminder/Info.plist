@@ -8,6 +8,23 @@
 	</array>
 	<key>LSMinimumSystemVersion</key>
 	<string>13.5</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>github.io</key>
+			<dict>
+				<key>NSAllowsArbitraryLoads</key>
+				<true/>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<false/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 	<key>SUFeedURL</key>
 	<string>https://snowwarri0r.github.io/StretchReminder/appcast.xml</string>
 	<key>SUPublicEDKey</key>
