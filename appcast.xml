@@ -8,10 +8,11 @@
             <sparkle:version>101</sparkle:version>
             <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.5</sparkle:minimumSystemVersion>
-            <enclosure url="https://snowwarri0r.github.io/StretchReminder/StretchReminder-universal-v1.0.1.zip" length="2958286" type="application/octet-stream" sparkle:edSignature="4hAq1cH5YZXjrV+nAxdvVnvOPLb1VL+4YYZUCGUNBn7rzLy1NN49uDm8R96+mTIsRIr4g2EmOxtXHe4rrnXUDQ=="/>
+            <enclosure url="https://snowwarri0r.github.io/StretchReminder/StretchReminder-universal-v1.0.1.zip" length="2958286" type="application/octet-stream" sparkle:edSignature="YUXxkJ0Fw2LANS+Ykm9qF6Q112ZX4g4++gcCstc45lycSVvAILJy5fyojSk1hxi3pwGsSNSC8CiMh4WOU7g8Cw=="/>
             <description><![CDATA[<h2>Release v1.0.1</h2>
 <p>Changes since v1.0.0:</p>
 <ul>
+<li>Update objective-c-xcode.yml</li>
 <li>Update objective-c-xcode.yml</li>
 <li>Update objective-c-xcode.yml</li>
 <li>Update objective-c-xcode.yml</li>
