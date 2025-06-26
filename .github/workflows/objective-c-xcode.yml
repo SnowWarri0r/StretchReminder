@@ -74,11 +74,6 @@ jobs:
           ditto -c -k --sequesterRsrc --keepParent $APP_PATH $ZIP_NAME
           echo "ZIP_PATH=$ZIP_NAME" >> $GITHUB_ENV
 
-      - name: Prepare Updates Directory
-        run: |
-          mkdir -p updates
-          cp "${{ env.ZIP_PATH }}" updates/
-
       - name: Download Sparkle 2.7.1 Release
         run: |
           curl -L -o sparkle.tar.xz \
@@ -86,37 +81,24 @@ jobs:
           tar -xf sparkle.tar.xz
 
       - name: Generate appcast.xml
+        env:
+          PRIVATE_KEY_SECRET: ${{ secrets.SPARKLE_EDDSA_PRIVATE_KEY }}
+          SPARKLE_DIR: "Sparkle-${{ env.SPARKLE_VERSION }}"
         run: |
-          SPARKLE_DIR="Sparkle-$SPARKLE_VERSION"
           chmod +x "$SPARKLE_DIR/bin/generate_appcast"
           mkdir -p updates
           cp "${{ env.ZIP_PATH }}" updates/
-          "$SPARKLE_DIR/bin/generate_appcast" updates/ > updates/appcast.xml
-
-      - name: Sign AppCast with EdDSA
-        env:
-          SPARKLE_DIR: "Sparkle-${{ env.SPARKLE_VERSION }}"
-          # 私钥以 Base64 存于 GitHub Secrets
-          PRIVATE_KEY: ${{ secrets.SPARKLE_EDDSA_PRIVATE_KEY }}
-        run: |
-          # 把私钥写成文件
-          echo "$PRIVATE_KEY" | base64 --decode > private_key.pem
-      
-          # 用 Sparkle 自带的可执行 sign_update 直接覆盖 appcast.xml
-          chmod +x "$SPARKLE_DIR/bin/sign_update"
-          "$SPARKLE_DIR/bin/sign_update" \
-            --key private_key.pem \
-            --in updates/appcast.xml \
-            --out updates/appcast.xml
-      
-          # 清理
-          rm private_key.pem
+          echo "$PRIVATE_KEY_SECRET" \
+            | "$SPARKLE_DIR/bin/generate_appcast" \
+                --ed-key-file - \
+                updates/ \
+            > updates/appcast.xml
 
       - name: Upload .app to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            ${{ env.ZIPPED_FILE }}
+            ${{ env.ZIP_PATH }}
             updates/appcast.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
