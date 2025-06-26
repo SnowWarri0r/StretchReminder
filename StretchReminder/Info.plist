@@ -9,7 +9,7 @@
 	<key>LSMinimumSystemVersion</key>
 	<string>13.5</string>
 	<key>SUFeedURL</key>
-	<string>https://SnowWarri0r.github.io/StretchReminder/updates/appcast.xml</string>
+	<string>https://snowwarri0r.github.io/StretchReminder/appcast.xml</string>
 	<key>SUPublicEDKey</key>
 	<string>4yLJCd8ZjZFBIY6MuJNNvEpDCGk1DRv1y5dnHi2iz14=</string>
 </dict>
