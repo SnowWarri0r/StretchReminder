@@ -72,19 +72,23 @@ jobs:
           ditto -c -k --sequesterRsrc --keepParent $APP_PATH $ZIP_NAME
           echo "ZIP_PATH=$ZIP_NAME" >> $GITHUB_ENV
 
+      - name: Checkout gh-pages into updates/
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: updates
+
       - name: Generate appcast.xml
         env:
           SPARKLE_VERSION: 2.7.1
           PRIVATE_KEY_SECRET: ${{ secrets.SPARKLE_EDDSA_PRIVATE_KEY }}
         run: |
-          set -x
           mkdir -p Sparkle
           curl -L -o Sparkle/sparkle.tar.xz \
             "https://github.com/sparkle-project/Sparkle/releases/download/$SPARKLE_VERSION/Sparkle-$SPARKLE_VERSION.tar.xz"
           tar -xf Sparkle/sparkle.tar.xz -C Sparkle
           chmod +x "Sparkle/bin/generate_appcast"
-          mkdir -p updates
-          mv "${{ env.ZIP_PATH }}" updates
+          mv -f "${{ env.ZIP_PATH }}" updates/
           echo "$PRIVATE_KEY_SECRET" \
             | "Sparkle/bin/generate_appcast" \
                 --ed-key-file - \
@@ -96,7 +100,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages             # 目标分支
           publish_dir: updates                 # 要推送的目录
-          commit_message: "chore: update appcast for ${{ github.ref_name }}"
+          commit_message: "chore: release for ${{ github.ref_name }}"
 
       - name: Upload .app to GitHub Release
         uses: softprops/action-gh-release@v2
