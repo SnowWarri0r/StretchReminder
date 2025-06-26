@@ -8,7 +8,12 @@
             <sparkle:version>101</sparkle:version>
             <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.5</sparkle:minimumSystemVersion>
-            <enclosure url="https://snowwarri0r.github.io/StretchReminder/StretchReminder-universal-v1.0.1.zip" length="2949157" type="application/octet-stream" sparkle:edSignature="2Svx7bxEFnBbu66HBLyMBg8mkefs3aHJfMC7CavKhqG14qdVwNtace6dG5CbQfvO72po3pUGpKUH8mCOb/uXBQ=="/>
+            <enclosure url="https://snowwarri0r.github.io/StretchReminder/StretchReminder-universal-v1.0.1.zip" length="2958286" type="application/octet-stream" sparkle:edSignature="ujuJwYFu1ED8tJ1AZGKpgvXTPmU1zr/fu95/EWuhyMJR4C0PEyJv2y03h9AYr1/eNnFZFvAEPy48yzxil/Y5DQ=="/>
+            <description><![CDATA[<h2>Release v1.0.1</h2>
+<p>Changes since v1.0.1:</p>
+<ul>
+</ul>
+]]></description>
         </item>
     </channel>
 </rss>
