@@ -8,3 +8,12 @@
 - [x] 提醒后图标变化，持续2分钟，最大限度缓解久坐压力
 - [x] 支持检查更新
 - [x] 大小仅5MB，极简小应用
+
+## 预览
+<img width="224" alt="image" src="https://github.com/user-attachments/assets/928dcab5-9d93-4d71-93d6-2c0c58d15bf7" />
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/c810f9be-da9b-42e1-9ca1-d2ccca024623" />
+<img width="29" alt="image" src="https://github.com/user-attachments/assets/d308e535-41a6-43ee-8938-5c45358de75c" />
+<img width="31" alt="image" src="https://github.com/user-attachments/assets/6e0f5c4b-6fac-4879-b170-67017cd4f7bf" />
+
+
+
