@@ -72,9 +72,34 @@ jobs:
           ditto -c -k --sequesterRsrc --keepParent $APP_PATH $ZIP_NAME
           echo "ZIPPED_FILE=$ZIP_NAME" >> $GITHUB_ENV
 
+      - name: Prepare Updates Directory
+        run: |
+          mkdir -p updates
+          cp "${{ env.ZIP_PATH }}" updates/
+
+      - name: Install Sparkle CLI
+        run: |
+          git clone https://github.com/sparkle-project/Sparkle.git ${{ runner.temp }}/Sparkle
+          chmod +x ${{ runner.temp }}/Sparkle/bin/generate_appcast
+
+      - name: Generate appcast.xml
+        run: |
+          ${{ runner.temp }}/Sparkle/bin/generate_appcast updates/ > updates/appcast.xml
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+
       - name: Upload .app to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ env.ZIPPED_FILE }}
+          files: |
+            ${{ env.ZIPPED_FILE }}
+            updates/appcast.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
