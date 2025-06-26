@@ -78,6 +78,25 @@ jobs:
           ref: gh-pages
           path: updates
 
+      - name: Generate Sparkle release notes
+        shell: bash
+        run: |
+          cd $GITHUB_WORKSPACE
+
+          # 取当前 tag 和上一个 tag
+          TAG=${GITHUB_REF#refs/tags/}
+          PREV_TAG=$(git describe --tags --abbrev=0 "${GITHUB_REF}^")
+
+          BASE="StretchReminder-universal-${TAG}"
+          
+          {
+            echo "<h2>Release ${TAG}</h2>"
+            echo "<p>Changes since ${PREV_TAG}:</p>"
+            echo "<ul>"
+            git log "${PREV_TAG}..${TAG}" --pretty=format:"<li>%s</li>"
+            echo "</ul>"
+          } > "updates/${BASE}.html"
+
       - name: Generate appcast.xml
         env:
           SPARKLE_VERSION: 2.7.1
