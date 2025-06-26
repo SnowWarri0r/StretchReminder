@@ -72,30 +72,31 @@ jobs:
           ditto -c -k --sequesterRsrc --keepParent $APP_PATH $ZIP_NAME
           echo "ZIP_PATH=$ZIP_NAME" >> $GITHUB_ENV
 
-      - name: Checkout gh-pages into updates/
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          path: updates
-
       - name: Generate Sparkle release notes
         shell: bash
         run: |
-          cd $GITHUB_WORKSPACE
-
           # 取当前 tag 和上一个 tag
-          TAG=${GITHUB_REF#refs/tags/}
-          PREV_TAG=$(git describe --tags --abbrev=0 "${GITHUB_REF}^")
-
-          BASE="StretchReminder-universal-${TAG}"
+          TAG=${{ github.ref_name }}
+          PREV_TAG=$(git tag --sort=v:refname | awk -v t="$TAG" '$0==t { getline; print }')
+          if [ -z "$PREV_TAG" ]; then
+            PREV_TAG=$(git rev-list --max-parents=0 HEAD)
+          fi
           
+          ZIP_NAME="${{ env.ZIP_PATH }}"
+          BASE="${ZIP_NAME%.zip}"
           {
             echo "<h2>Release ${TAG}</h2>"
             echo "<p>Changes since ${PREV_TAG}:</p>"
             echo "<ul>"
             git log "${PREV_TAG}..${TAG}" --pretty=format:"<li>%s</li>"
             echo "</ul>"
-          } > "updates/${BASE}.html"
+          } > "${BASE}.html"
+
+      - name: Checkout gh-pages into updates/
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: updates
 
       - name: Generate appcast.xml
         env:
@@ -107,7 +108,13 @@ jobs:
             "https://github.com/sparkle-project/Sparkle/releases/download/$SPARKLE_VERSION/Sparkle-$SPARKLE_VERSION.tar.xz"
           tar -xf Sparkle/sparkle.tar.xz -C Sparkle
           chmod +x "Sparkle/bin/generate_appcast"
-          mv -f "${{ env.ZIP_PATH }}" updates/
+          
+          ZIPNAME="${{ env.ZIP_PATH }}"
+          mv -f "${ZIPNAME}" updates/
+          
+          BASENAME="${ZIPNAME%.zip}"
+          mv -f "${BASENAME}.html" updates/
+          
           echo "$PRIVATE_KEY_SECRET" \
             | "Sparkle/bin/generate_appcast" \
                 --ed-key-file - \
