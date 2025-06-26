@@ -75,9 +75,14 @@ jobs:
       - name: Generate Sparkle release notes
         shell: bash
         run: |
-          # 取当前 tag 和上一个 tag
           TAG=${{ github.ref_name }}
-          PREV_TAG=$(git tag --sort=v:refname | awk -v t="$TAG" '$0==t { getline; print }')
+          PREV_TAG=""
+          for t in $(git tag --sort=v:refname); do
+            if [[ "$t" == "$TAG" ]]; then
+              break
+            fi
+            PREV_TAG="$t"
+          done
           if [ -z "$PREV_TAG" ]; then
             PREV_TAG=$(git rev-list --max-parents=0 HEAD)
           fi
