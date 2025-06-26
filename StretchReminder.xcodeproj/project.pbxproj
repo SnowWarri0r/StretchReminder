@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		815BD03D2E0CEF700087728D /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 815BD03C2E0CEF700087728D /* Sparkle */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		8111672A2E0BAEEF000A345E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -48,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				815BD03D2E0CEF700087728D /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +96,7 @@
 			);
 			name = StretchReminder;
 			packageProductDependencies = (
+				815BD03C2E0CEF700087728D /* Sparkle */,
 			);
 			productName = StretchReminder;
 			productReference = 811166B62E0B9F0B000A345E /* StretchReminder.app */;
@@ -120,6 +126,9 @@
 			);
 			mainGroup = 811166AD2E0B9F0B000A345E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				815BD03B2E0CEF700087728D /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 811166B72E0B9F0B000A345E /* Products */;
 			projectDirPath = "";
@@ -349,6 +358,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		815BD03B2E0CEF700087728D /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		815BD03C2E0CEF700087728D /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 815BD03B2E0CEF700087728D /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 811166AE2E0B9F0B000A345E /* Project object */;
 }
