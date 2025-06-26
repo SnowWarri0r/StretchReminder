@@ -41,6 +41,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # 拉取完整历史
+          tags: true       # 确保拿到所有 tag
 
       - name: Select latest Xcode version
         run: sudo xcode-select -s /Applications/Xcode_16.2.app
