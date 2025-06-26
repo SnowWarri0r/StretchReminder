@@ -86,6 +86,7 @@ jobs:
           PRIVATE_KEY_SECRET: ${{ secrets.SPARKLE_EDDSA_PRIVATE_KEY }}
           SPARKLE_DIR: "sparkle"
         run: |
+          set -x
           chmod +x "$SPARKLE_DIR/bin/generate_appcast"
           mkdir -p updates
           cp "${{ env.ZIP_PATH }}" updates/
