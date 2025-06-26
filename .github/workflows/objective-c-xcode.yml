@@ -90,11 +90,18 @@ jobs:
                 --ed-key-file - \
                 updates \
 
+      - name: Deploy appcast to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages             # 目标分支
+          publish_dir: updates                 # 要推送的目录
+          commit_message: "chore: update appcast for ${{ github.ref_name }}"
+
       - name: Upload .app to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
             updates/${{ env.ZIP_PATH }}
-            updates/appcast.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
