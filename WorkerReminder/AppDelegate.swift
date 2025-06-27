@@ -36,14 +36,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             type: .stretch,
             message: String(localized: "reminder_message_stretch"),
             interval: 45 * 60,
-            endDelay: 120
+            endDelay: 120,
+            fireTimes: nil,
         ))
 
         manager.addReminder(ReminderConfig(
             type: .drink,
             message: String(localized: "reminder_message_drink"),
             interval: 60 * 60,
-            endDelay: 10
+            endDelay: 10,
+            fireTimes: nil,
+        ))
+        manager.addReminder(ReminderConfig(
+            type: .orderFood,
+            message: String(localized: "reminder_message_orderFood"),
+            interval: nil,
+            endDelay: 60,
+            fireTimes: [
+                DateComponents(hour: 11, minute: 30),
+                DateComponents(hour: 17, minute: 30)
+            ]
+        ))
+
+        manager.addReminder(ReminderConfig(
+            type: .eat,
+            message: String(localized: "reminder_message_eat"),
+            interval: nil,
+            endDelay: 60,
+            fireTimes: [
+                DateComponents(hour: 12, minute: 0),
+                DateComponents(hour: 18, minute: 0)
+            ]
         ))
         
         statusBarController = StatusBarController(reminderManager: manager)

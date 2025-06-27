@@ -138,6 +138,22 @@
         }
       }
     },
+    "menu_eat_placeholder" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next metal in - minutes"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下次吃饭还剩 - 分钟"
+          }
+        }
+      }
+    },
     "menu_launch_on_startup" : {
       "localizations" : {
         "en" : {
@@ -168,6 +184,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "下次喝水还剩 %d 分钟"
+          }
+        }
+      }
+    },
+    "menu_next_eat" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next meal in %d minutes"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下次吃饭还剩%d分钟"
+          }
+        }
+      }
+    },
+    "menu_next_orderFood" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next food order in %d minutes"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下次点外卖还剩%d分钟"
           }
         }
       }
@@ -208,6 +256,38 @@
         }
       }
     },
+    "menu_not_set_eat" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meal reminder time not set"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下次吃饭时间未设置"
+          }
+        }
+      }
+    },
+    "menu_not_set_orderFood" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Food order time not set"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下次点外卖时间未设置"
+          }
+        }
+      }
+    },
     "menu_not_set_stretch" : {
       "comment" : "下次伸展时间未设置",
       "extractionState" : "manual",
@@ -222,6 +302,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "下次伸展时间未设置"
+          }
+        }
+      }
+    },
+    "menu_orderFood_placeholder" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next Food order in - minutes"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下次点外卖还有 - 分钟"
           }
         }
       }
@@ -258,6 +354,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "下次喝水提醒已暂停"
+          }
+        }
+      }
+    },
+    "menu_paused_eat" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meal reminder paused"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下次吃饭提醒已暂停"
+          }
+        }
+      }
+    },
+    "menu_paused_orderFood" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Food order reminder paused"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下次点外卖提醒已暂停"
           }
         }
       }
@@ -349,6 +477,22 @@
         }
       }
     },
+    "menu_trigger_eat" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meal"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "吃饭"
+          }
+        }
+      }
+    },
     "menu_trigger_main" : {
       "localizations" : {
         "en" : {
@@ -361,6 +505,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "立即提醒"
+          }
+        }
+      }
+    },
+    "menu_trigger_orderFood" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Food order"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "点外卖"
           }
         }
       }
@@ -428,6 +588,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "💧 该喝水了！"
+          }
+        }
+      }
+    },
+    "reminder_message_eat" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🍱 Meal time! Fuel up and stay energized."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🍽️ 到饭点啦，该去吃饭咯！"
+          }
+        }
+      }
+    },
+    "reminder_message_orderFood" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🍽️ Time to order food! Don’t wait until it’s too late."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🍱 快到饭点啦，记得提前点外卖～"
           }
         }
       }

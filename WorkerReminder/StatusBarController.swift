@@ -22,6 +22,8 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
     private var reminderManager: ReminderManager
     private var countdownItems: [ReminderType: NSMenuItem] = [:]
     private var activeStates: Set<ReminderType> = []
+    private var iconCycleTimer: Timer?
+    private var currentIconIndex: Int = 0
     private lazy var updater: SPUStandardUpdaterController = {
         return SPUStandardUpdaterController(
             startingUpdater: true,
@@ -42,6 +44,7 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
         }
         
         let menu = NSMenu()
+        
         let stretchItem = NSMenuItem(title: String(localized: "menu_stretch_placeholder"), action: nil, keyEquivalent: "")
         stretchItem.isEnabled = false
         menu.addItem(stretchItem)
@@ -51,6 +54,16 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
         drinkItem.isEnabled = false
         menu.addItem(drinkItem)
         countdownItems[.drink] = drinkItem
+        
+        let orderFoodItem = NSMenuItem(title: String(localized: "menu_orderFood_placeholder"), action: nil, keyEquivalent: "")
+        orderFoodItem.isEnabled = false
+        menu.addItem(orderFoodItem)
+        countdownItems[.orderFood] = orderFoodItem
+        
+        let eatItem = NSMenuItem(title: String(localized: "menu_eat_placeholder"), action: nil, keyEquivalent: "")
+        eatItem.isEnabled = false
+        menu.addItem(eatItem)
+        countdownItems[.eat] = eatItem
         
         pauseItem = NSMenuItem(title: String(localized: "menu_pause"), action: #selector(togglePause), keyEquivalent: "P")
         pauseItem.target = self
@@ -69,6 +82,14 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
         triggerDrink.target = self
         triggerSubmenu.addItem(triggerDrink)
         
+        let triggerOrderFood = NSMenuItem(title: String(localized: "menu_trigger_orderFood"), action: #selector(triggerOrderFood), keyEquivalent: "")
+        triggerOrderFood.target = self
+        triggerSubmenu.addItem(triggerOrderFood)
+        
+        let triggerEat = NSMenuItem(title: String(localized: "menu_trigger_eat"), action: #selector(triggerEat), keyEquivalent: "")
+        triggerEat.target = self
+        triggerSubmenu.addItem(triggerEat)
+        
         menu.addItem(triggerMainItem)
         // 开机自启开关
         let launchItem = NSMenuItem(
@@ -80,6 +101,7 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
         // 根据当前状态打勾
         launchItem.state = (SMAppService.mainApp.status == .enabled) ? .on : .off
         menu.addItem(launchItem)
+        
         let checkItem = NSMenuItem(
             title: String(localized: "menu_check_update"),
             action: #selector(checkForUpdates),
@@ -105,6 +127,10 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
                     item.title = String(localized: "menu_paused_stretch")
                 case .drink:
                     item.title = String(localized: "menu_paused_drink")
+                case .orderFood:
+                    item.title = String(localized: "menu_paused_orderFood")
+                case .eat:
+                    item.title = String(localized: "menu_paused_eat")
                 }
             } else if let next = reminderManager.nextFireDateMap[type] {
                 let mins = max(0, Int(ceil(next.timeIntervalSinceNow / 60)))
@@ -114,6 +140,10 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
                     format = String(localized: "menu_next_stretch")
                 case .drink:
                     format = String(localized: "menu_next_drink")
+                case .orderFood:
+                    format = String(localized: "menu_next_orderFood")
+                case .eat:
+                    format = String(localized: "menu_next_eat")
                 }
                 item.title = String.localizedStringWithFormat(format, mins)
             } else {
@@ -122,6 +152,10 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
                     item.title = String(localized: "menu_not_set_stretch")
                 case .drink:
                     item.title = String(localized: "menu_not_set_drink")
+                case .orderFood:
+                    item.title = String(localized: "menu_not_set_orderFood")
+                case .eat:
+                    item.title = String(localized: "menu_not_set_eat")
                 }
             }
         }
@@ -146,17 +180,52 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
         }
     }
     
-    private func updateStatusBarIcon() {
-        let symbolName: String
-        if activeStates.contains(.stretch) {
-            symbolName = "figure.cooldown"
-        } else if activeStates.contains(.drink) {
-            symbolName = "drop.fill"
-        } else {
-            symbolName = "figure.walk"
+    private func symbolName(for type: ReminderType) -> String {
+        switch type {
+        case .stretch:    return "figure.cooldown"
+        case .drink:      return "drop.fill"
+        case .orderFood:  return "takeoutbag.and.cup.and.straw.fill"
+        case .eat:        return "fork.knife.circle.fill"
         }
-        statusItem.button?.image = NSImage(systemSymbolName: symbolName, accessibilityDescription: nil)
+    }
+    
+    private func updateStatusBarIcon() {
+        iconCycleTimer?.invalidate()
+        iconCycleTimer = nil
+        currentIconIndex = 0
+        if activeStates.count > 1 {
+            // 直接用最新的 activeStates 重启
+            startIconCycle()
+        } else {
+            // 单一或无状态，显示唯一图标
+            let name = activeStates.first.map(symbolName) ?? "figure.walk"
+            applyIcon(named: name)
+        }
+    }
+    
+    private func applyIcon(named name: String) {
+        statusItem.button?.image = NSImage(systemSymbolName: name, accessibilityDescription: nil)
         statusItem.button?.image?.isTemplate = true
+    }
+    
+    private func startIconCycle() {
+        let timer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            let types = ReminderType.allCases.filter { self.activeStates.contains($0) }
+            let names = types.map(symbolName)
+            guard !names.isEmpty else { return }
+            let name = names[self.currentIconIndex % names.count]
+            self.applyIcon(named: name)
+            self.currentIconIndex += 1
+        }
+        RunLoop.main.add(timer, forMode: .common)
+        iconCycleTimer = timer
+    }
+    
+    private func stopIconCycle() {
+        iconCycleTimer?.invalidate()
+        iconCycleTimer = nil
+        currentIconIndex = 0
     }
     
     @objc private func checkForUpdates() {
@@ -169,6 +238,14 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
     
     @objc private func triggerDrink() {
         reminderManager.triggerNow(for: .drink)
+    }
+    
+    @objc private func triggerOrderFood() {
+        reminderManager.triggerNow(for: .orderFood)
+    }
+    
+    @objc private func triggerEat() {
+        reminderManager.triggerNow(for: .eat)
     }
     
     @objc private func togglePause() {

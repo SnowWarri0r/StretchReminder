@@ -1,11 +1,12 @@
-// ReminderManager.swift
 import Foundation
 import AppKit
 import SwiftUI
 
-enum ReminderType {
+enum ReminderType: CaseIterable {
     case stretch
     case drink
+    case orderFood
+    case eat
 }
 
 extension ReminderType {
@@ -13,6 +14,16 @@ extension ReminderType {
         switch self {
         case .stretch: return "stretch"
         case .drink: return "drink"
+        case .orderFood: return "orderFood"
+        case .eat: return "eat"
+        }
+    }
+    var localizedMessage: String {
+        switch self {
+        case .stretch: return String(localized: "reminder_message_stretch")
+        case .drink: return String(localized: "reminder_message_drink")
+        case .orderFood: return String(localized: "reminder_message_orderFood")
+        case .eat: return String(localized: "reminder_message_eat")
         }
     }
 }
@@ -25,8 +36,9 @@ protocol ReminderManagerDelegate: AnyObject {
 struct ReminderConfig {
     let type: ReminderType
     let message: String
-    let interval: TimeInterval
+    var interval: TimeInterval?
     let endDelay: TimeInterval
+    let fireTimes: [DateComponents]?
 }
 
 class FloatingWindow: NSWindow {
@@ -51,7 +63,7 @@ class ReminderManager: ObservableObject {
     private var pendingTypes: Set<ReminderType> = []
     private var floatingOverlayModel: ReminderOverlayModel?
     private var floatingWindows: [NSWindow] = []
-    private var dispatchTimers: [ReminderType: DispatchSourceTimer] = [:]
+    private var dispatchTimers: [ReminderType: [DispatchSourceTimer]] = [:]
     private var revertTimers: [ReminderType: DispatchSourceTimer] = [:]
     
     private var configs: [ReminderType: ReminderConfig] = [:]
@@ -68,7 +80,9 @@ class ReminderManager: ObservableObject {
     
     deinit {
         NSWorkspace.shared.notificationCenter.removeObserver(self)
-        dispatchTimers.values.forEach { $0.cancel() }
+        dispatchTimers.values
+            .flatMap { $0 }
+            .forEach { $0.cancel() }
         revertTimers.values.forEach { $0.cancel() }
     }
     
@@ -79,10 +93,12 @@ class ReminderManager: ObservableObject {
     
     func pause() {
         isPaused = true
-        dispatchTimers.values.forEach { $0.cancel() }
+        dispatchTimers.values
+            .flatMap { $0 }
+            .forEach { $0.cancel() }
         dispatchTimers.removeAll()
     }
-
+    
     func resume() {
         guard isPaused else { return }
         isPaused = false
@@ -91,30 +107,35 @@ class ReminderManager: ObservableObject {
         }
     }
     
-    @objc private func handleWake() {
-        dispatchTimers.values.forEach { $0.cancel() }
-        configs.values.forEach { schedule($0) }
-    }
-    
     private func schedule(_ config: ReminderConfig) {
         guard !isPaused else { return }
-        dispatchTimers[config.type]?.cancel()
+        dispatchTimers[config.type]?
+            .forEach { $0.cancel() }
+        dispatchTimers[config.type] = []
         
-        let next = Date().addingTimeInterval(config.interval)
-        nextFireDateMap[config.type] = next
-        
-        let timer = DispatchSource.makeTimerSource(queue: .main)
-        timer.schedule(
-            deadline: .now() + config.interval,
-            repeating: .never,
-            leeway: .seconds(1)
-        )
-        timer.setEventHandler { [weak self] in
-            self?.showFloatingReminder(config)
-            self?.schedule(config)
+        if let fireTimes = config.fireTimes {
+            var timers: [DispatchSourceTimer] = []
+            for timeComponent in fireTimes {
+                if let t = makeFixedTimer(type: config.type,
+                                          at: timeComponent,
+                                          config: config) {
+                    timers.append(t)
+                }
+            }
+            dispatchTimers[config.type] = timers
+        } else if let interval = config.interval {
+            let next = Date().addingTimeInterval(interval)
+            nextFireDateMap[config.type] = next
+            
+            let t = DispatchSource.makeTimerSource(queue: .main)
+            t.schedule(deadline: .now() + interval, repeating: .never)
+            t.setEventHandler { [weak self] in
+                self?.showFloatingReminder(config)
+                self?.schedule(config)
+            }
+            t.resume()
+            dispatchTimers[config.type] = [t]
         }
-        timer.resume()
-        dispatchTimers[config.type] = timer
     }
     
     func start() {
@@ -127,18 +148,70 @@ class ReminderManager: ObservableObject {
         guard !isPaused else { return }
         guard let config = configs[type] else { return }
 
-        dispatchTimers[type]?.cancel()  // 取消原定时器
-        showFloatingReminder(config)   // 立即显示
-        schedule(config)               // 重置下一轮调度
+        // 先取消并清空所有旧的定时器
+        if let timers = dispatchTimers[type] {
+            timers.forEach { $0.cancel() }
+        }
+        dispatchTimers[type] = []
+
+        // 立即弹窗
+        showFloatingReminder(config)
+        // 重置下一轮调度
+        schedule(config)
+    }
+    
+    private func makeFixedTimer(type: ReminderType,
+                                at time: DateComponents,
+                                config: ReminderConfig) -> DispatchSourceTimer? {
+        guard let next = nextDate(for: time) else { return nil }
+        nextFireDateMap[type] = next
+        
+        let interval = next.timeIntervalSinceNow
+        let t = DispatchSource.makeTimerSource(queue: .main)
+        t.schedule(deadline: .now() + interval, repeating: .never)
+        t.setEventHandler { [weak self] in
+            guard let self = self, !self.isPaused else { return }
+            self.showFloatingReminder(config)
+            // 递归创建并跟踪
+            if let nextTimer = self.makeFixedTimer(type: type, at: time, config: config) {
+                self.dispatchTimers[type, default: []].append(nextTimer)
+            }
+        }
+        t.resume()
+        return t
+    }
+    
+    private func nextDate(for time: DateComponents) -> Date? {
+        var calendar = Calendar.current
+        calendar.timeZone = .current
+        let now = Date()
+        
+        var components = calendar.dateComponents([.year, .month, .day], from: now)
+        components.hour = time.hour
+        components.minute = time.minute
+        components.second = 0
+        
+        if let candidate = calendar.date(from: components), candidate > now {
+            return candidate
+        } else {
+            // 明天
+            if let tomorrow = calendar.date(byAdding: .day, value: 1, to: now) {
+                var tomorrowComponents = calendar.dateComponents([.year, .month, .day], from: tomorrow)
+                tomorrowComponents.hour = time.hour
+                tomorrowComponents.minute = time.minute
+                tomorrowComponents.second = 0
+                return calendar.date(from: tomorrowComponents)
+            }
+        }
+        return nil
     }
     
     private func buildCombinedMessage() -> String {
         var lines: [String] = []
-        if pendingTypes.contains(.stretch) {
-            lines.append(configs[.stretch]!.message)
-        }
-        if pendingTypes.contains(.drink) {
-            lines.append(configs[.drink]!.message)
+        for type in pendingTypes {
+            if let msg = configs[type]?.message {
+                lines.append(msg)
+            }
         }
         return lines.joined(separator: "\n")
     }
@@ -149,14 +222,39 @@ class ReminderManager: ObservableObject {
     
     /// 核心：创建带动画的半透明浮窗
     private func showFloatingReminder(_ config: ReminderConfig) {
+        let isNew = !pendingTypes.contains(config.type)
         pendingTypes.insert(config.type)
-        guard floatingWindows.isEmpty else {
+
+        if isNew {
+            delegate?.reminderDidStart(config.type)
+        }
+        
+        revertTimers[config.type]?.cancel()
+        let rt = DispatchSource.makeTimerSource(queue: .main)
+        rt.schedule(wallDeadline: .now() + config.endDelay,
+                    repeating: .never,
+                    leeway: .seconds(1))
+        rt.setEventHandler { [weak self] in
+            guard let self = self else { return }
+            self.delegate?.reminderDidEnd(config.type)
+            self.pendingTypes.remove(config.type)
+            DispatchQueue.main.async {
+                if self.pendingTypes.isEmpty {
+                    self.floatingWindows.forEach { $0.orderOut(nil) }
+                    self.floatingWindows.removeAll()
+                } else {
+                    self.updateFloatingContent()
+                }
+            }
+        }
+        rt.resume()
+        revertTimers[config.type] = rt
+        
+        if !floatingWindows.isEmpty {
             updateFloatingContent()
             return
         }
-        for type in pendingTypes {
-            delegate?.reminderDidStart(type)
-        }
+        
         let model = ReminderOverlayModel(message: buildCombinedMessage())
         self.floatingOverlayModel = model
         let overlay = FloatingReminderView(model: model)
@@ -205,7 +303,7 @@ class ReminderManager: ObservableObject {
             ctx.duration = 0.3
             window.animator().alphaValue = 1
         }, completionHandler: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
                 NSAnimationContext.runAnimationGroup({ ctx in
                     ctx.duration = 0.3
                     window.animator().alphaValue = 0
@@ -217,19 +315,14 @@ class ReminderManager: ObservableObject {
                 })
             }
         })
-        for type in pendingTypes {
-            revertTimers[type]?.cancel()
-            let rt = DispatchSource.makeTimerSource(queue: .main)
-            rt.schedule(
-                wallDeadline: .now() + config.endDelay,
-                repeating: .never,
-                leeway: .seconds(1)
-            )
-            rt.setEventHandler { [weak self] in
-                self?.delegate?.reminderDidEnd(type)
-            }
-            rt.resume()
-            revertTimers[type] = rt
-        }
+    }
+    
+    @objc private func handleWake() {
+        dispatchTimers.values
+            .flatMap { $0 }
+            .forEach { $0.cancel() }
+        dispatchTimers.removeAll()
+
+        configs.values.forEach { schedule($0) }
     }
 }
