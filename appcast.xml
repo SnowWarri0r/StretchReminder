@@ -3,6 +3,29 @@
     <channel>
         <title>StretchReminder</title>
         <item>
+            <title>1.0.2</title>
+            <pubDate>Fri, 27 Jun 2025 06:20:01 +0000</pubDate>
+            <sparkle:version>102</sparkle:version>
+            <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.5</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h2>Release v1.0.2</h2>
+<p>Changes since v1.0.1:</p>
+<ul>
+<li>修改软件源</li>
+<li>修改版本号</li>
+<li>修改版本号</li>
+<li>Update objective-c-xcode.yml</li>
+<li>修复scheme问题</li>
+<li>feat.喝水提醒&&多语言支持&&合并提醒</li>
+<li>Update README.md</li>
+<li>update readme</li></ul>
+]]></description>
+            <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder-universal-v1.0.2.zip" length="3005342" type="application/octet-stream" sparkle:edSignature="xo/pQoZdAG38Ao4psWsTOdw1g5avrc31GFejDdefZzTFPwy/VysFXXFaeNbnh8Sh/jTHftIeL1IkCfMHAfrHAg=="/>
+            <sparkle:deltas>
+                <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder102-101.delta" sparkle:deltaFrom="101" length="113486" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="iZe4JjWiWbu6Qctcc1cHzYMHYYQK7m1ZLuGpTh/lxBEhbn85c3/y7e/YmRn3DNH0G37BBipl0TNZrSdhhbm0DQ=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.0.1</title>
             <pubDate>Thu, 26 Jun 2025 05:24:08 +0000</pubDate>
             <sparkle:version>101</sparkle:version>
