@@ -71,7 +71,7 @@ jobs:
       - name: Package .app
         run: |
           APP_PATH="build/Build/Products/Release/*.app"
-          ZIP_NAME="StretchReminder-universal-${{ github.ref_name }}.zip"
+          ZIP_NAME="WorkerReminder-universal-${{ github.ref_name }}.zip"
           ditto -c -k --sequesterRsrc --keepParent $APP_PATH $ZIP_NAME
           echo "ZIP_PATH=$ZIP_NAME" >> $GITHUB_ENV
 
