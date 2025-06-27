@@ -9,15 +9,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/snowwarri0r/WorkerReminder/stargazers">
-    <img src="https://img.shields.io/github/stars/snowwarri0r/WorkerReminder?style=social" alt="GitHub stars">
-  </a>
-  <a href="https://github.com/snowwarri0r/WorkerReminder/releases">
-    <img src="https://img.shields.io/github/v/release/snowwarri0r/WorkerReminder" alt="Latest release">
-  </a>
-  <a href="https://github.com/snowwarri0r/WorkerReminder/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/snowwarri0r/WorkerReminder" alt="License">
-  </a>
+  <img src="https://img.shields.io/github/v/release/snowwarri0r/WorkerReminder" alt="Latest release">
+  <img src="https://img.shields.io/github/license/snowwarri0r/WorkerReminder" alt="License">
 </p>
 
 ## 特性
