@@ -1,5 +1,24 @@
-# WorkerReminder
-打工人提醒
+<p align="center">
+  <img width="128" alt="image" src="https://github.com/user-attachments/assets/92c40790-0acf-41f9-91c0-a820252a7bed" />
+</p>
+
+<h1 align="center">WorkerReminder</h1>
+
+<p align="center">
+  打工人专属桌面提醒工具 💼🍵  
+</p>
+
+<p align="center">
+  <a href="https://github.com/snowwarri0r/WorkerReminder/stargazers">
+    <img src="https://img.shields.io/github/stars/snowwarri0r/WorkerReminder?style=social" alt="GitHub stars">
+  </a>
+  <a href="https://github.com/snowwarri0r/WorkerReminder/releases">
+    <img src="https://img.shields.io/github/v/release/snowwarri0r/WorkerReminder" alt="Latest release">
+  </a>
+  <a href="https://github.com/snowwarri0r/WorkerReminder/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/snowwarri0r/WorkerReminder" alt="License">
+  </a>
+</p>
 
 ## 特性
 - [x] 开机自启设置
