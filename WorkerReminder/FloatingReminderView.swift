@@ -1,12 +1,12 @@
 import SwiftUI
 
 struct FloatingReminderView: View {
-    let message: String
+    @ObservedObject var model: ReminderOverlayModel
     
     var body: some View {
         ZStack {
             Color.clear
-            Text(message)
+            Text(model.message)
                 .font(.title)
                 .foregroundColor(.white)
                 .padding()

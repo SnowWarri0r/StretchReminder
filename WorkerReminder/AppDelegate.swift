@@ -4,7 +4,7 @@ import UserNotifications
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     var statusBarController: StatusBarController?
-    let reminderManager = ReminderManager()
+    let manager = ReminderManager()
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         // 请求通知权限
@@ -15,13 +15,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
                 
                 let alert = NSAlert()
-                alert.messageText = "无法发送提醒通知"
-                alert.informativeText = """
-                请在“系统设置 → 通知”中为 StretchReminder 启用通知，以接收更新提醒。
-                """
+                alert.messageText = String(localized: "alert_notification_denied_title")
+                alert.informativeText = String(localized: "alert_notification_denied_detail")
                 alert.alertStyle = .informational
-                alert.addButton(withTitle: "打开通知设置")
-                alert.addButton(withTitle: "取消")
+                alert.addButton(withTitle: String(localized: "alert_notification_open_button"))
+                alert.addButton(withTitle: String(localized: "alert_cancel"))
                 let response = alert.runModal()
                 if response == .alertFirstButtonReturn {
                     if let url = URL(string: "x-apple.systempreferences:com.apple.preference.notifications") {
@@ -34,8 +32,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
         }
+        manager.addReminder(ReminderConfig(
+            type: .stretch,
+            message: String(localized: "reminder_message_stretch"),
+            interval: 45 * 60,
+            endDelay: 120
+        ))
+
+        manager.addReminder(ReminderConfig(
+            type: .drink,
+            message: String(localized: "reminder_message_drink"),
+            interval: 60 * 60,
+            endDelay: 10
+        ))
         
-        statusBarController = StatusBarController(reminderManager: reminderManager)
-        reminderManager.start()
+        statusBarController = StatusBarController(reminderManager: manager)
+        manager.start()
     }
 }

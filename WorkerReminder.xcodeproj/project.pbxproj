@@ -23,26 +23,26 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		811166B62E0B9F0B000A345E /* StretchReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StretchReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		811166B62E0B9F0B000A345E /* WorkerReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkerReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		811167272E0BA895000A345E /* Exceptions for "StretchReminder" folder in "StretchReminder" target */ = {
+		811167272E0BA895000A345E /* Exceptions for "WorkerReminder" folder in "WorkerReminder" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 811166B52E0B9F0B000A345E /* StretchReminder */;
+			target = 811166B52E0B9F0B000A345E /* WorkerReminder */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		811166B82E0B9F0B000A345E /* StretchReminder */ = {
+		811166B82E0B9F0B000A345E /* WorkerReminder */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				811167272E0BA895000A345E /* Exceptions for "StretchReminder" folder in "StretchReminder" target */,
+				811167272E0BA895000A345E /* Exceptions for "WorkerReminder" folder in "WorkerReminder" target */,
 			);
-			path = StretchReminder;
+			path = WorkerReminder;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -62,7 +62,7 @@
 		811166AD2E0B9F0B000A345E = {
 			isa = PBXGroup;
 			children = (
-				811166B82E0B9F0B000A345E /* StretchReminder */,
+				811166B82E0B9F0B000A345E /* WorkerReminder */,
 				811166B72E0B9F0B000A345E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,7 +70,7 @@
 		811166B72E0B9F0B000A345E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				811166B62E0B9F0B000A345E /* StretchReminder.app */,
+				811166B62E0B9F0B000A345E /* WorkerReminder.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,9 +78,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		811166B52E0B9F0B000A345E /* StretchReminder */ = {
+		811166B52E0B9F0B000A345E /* WorkerReminder */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 811166D82E0B9F0C000A345E /* Build configuration list for PBXNativeTarget "StretchReminder" */;
+			buildConfigurationList = 811166D82E0B9F0C000A345E /* Build configuration list for PBXNativeTarget "WorkerReminder" */;
 			buildPhases = (
 				811166B22E0B9F0B000A345E /* Sources */,
 				811166B32E0B9F0B000A345E /* Frameworks */,
@@ -92,14 +92,14 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				811166B82E0B9F0B000A345E /* StretchReminder */,
+				811166B82E0B9F0B000A345E /* WorkerReminder */,
 			);
-			name = StretchReminder;
+			name = WorkerReminder;
 			packageProductDependencies = (
 				815BD03C2E0CEF700087728D /* Sparkle */,
 			);
 			productName = StretchReminder;
-			productReference = 811166B62E0B9F0B000A345E /* StretchReminder.app */;
+			productReference = 811166B62E0B9F0B000A345E /* WorkerReminder.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -117,12 +117,13 @@
 					};
 				};
 			};
-			buildConfigurationList = 811166B12E0B9F0B000A345E /* Build configuration list for PBXProject "StretchReminder" */;
+			buildConfigurationList = 811166B12E0B9F0B000A345E /* Build configuration list for PBXProject "WorkerReminder" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 811166AD2E0B9F0B000A345E;
 			minimizedProjectReferenceProxies = 1;
@@ -134,7 +135,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				811166B52E0B9F0B000A345E /* StretchReminder */,
+				811166B52E0B9F0B000A345E /* WorkerReminder */,
 			);
 		};
 /* End PBXProject section */
@@ -219,6 +220,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -275,6 +277,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};
@@ -284,14 +287,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_ENTITLEMENTS = StretchReminder/StretchReminder.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WorkerReminder/WorkerReminder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 101;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = StretchReminder/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "伸展提醒";
+				INFOPLIST_FILE = WorkerReminder/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "打工人提醒";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -301,7 +304,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = snowwarri0r.StretchReminder;
+				PRODUCT_BUNDLE_IDENTIFIER = snowwarri0r.WorkerReminder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -315,14 +318,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_ENTITLEMENTS = StretchReminder/StretchReminder.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WorkerReminder/WorkerReminder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 101;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = StretchReminder/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "伸展提醒";
+				INFOPLIST_FILE = WorkerReminder/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "打工人提醒";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -332,7 +335,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = snowwarri0r.StretchReminder;
+				PRODUCT_BUNDLE_IDENTIFIER = snowwarri0r.WorkerReminder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -343,7 +346,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		811166B12E0B9F0B000A345E /* Build configuration list for PBXProject "StretchReminder" */ = {
+		811166B12E0B9F0B000A345E /* Build configuration list for PBXProject "WorkerReminder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				811166D62E0B9F0C000A345E /* Debug */,
@@ -352,7 +355,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		811166D82E0B9F0C000A345E /* Build configuration list for PBXNativeTarget "StretchReminder" */ = {
+		811166D82E0B9F0C000A345E /* Build configuration list for PBXNativeTarget "WorkerReminder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				811166D92E0B9F0C000A345E /* Debug */,
