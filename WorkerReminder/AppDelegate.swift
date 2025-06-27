@@ -37,15 +37,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             message: String(localized: "reminder_message_stretch"),
             interval: 45 * 60,
             endDelay: 120,
-            fireTimes: nil,
+            fireTimes: nil
         ))
-
+        
         manager.addReminder(ReminderConfig(
             type: .drink,
             message: String(localized: "reminder_message_drink"),
             interval: 60 * 60,
             endDelay: 10,
-            fireTimes: nil,
+            fireTimes: nil
         ))
         manager.addReminder(ReminderConfig(
             type: .orderFood,
@@ -57,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 DateComponents(hour: 17, minute: 30)
             ]
         ))
-
+        
         manager.addReminder(ReminderConfig(
             type: .eat,
             message: String(localized: "reminder_message_eat"),
