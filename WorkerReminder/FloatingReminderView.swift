@@ -9,7 +9,7 @@ struct CharWrappedText: NSViewRepresentable {
         let label = NSTextField(wrappingLabelWithString: text)
         label.font = font
         label.textColor = textColor
-        label.lineBreakMode = .byCharWrapping     // ← 关键
+        label.lineBreakMode = .byCharWrapping
         label.backgroundColor = .clear
         label.isBezeled = false
         label.drawsBackground = false
