@@ -4,7 +4,7 @@ struct CharWrappedText: NSViewRepresentable {
     let text: String
     let font: NSFont
     let textColor: NSColor
-
+    
     func makeNSView(context: Context) -> NSTextField {
         let label = NSTextField(wrappingLabelWithString: text)
         label.font = font
@@ -17,7 +17,7 @@ struct CharWrappedText: NSViewRepresentable {
         label.isSelectable = false
         return label
     }
-
+    
     func updateNSView(_ nsView: NSTextField, context: Context) {
         nsView.stringValue = text
     }
@@ -27,12 +27,12 @@ struct FloatingReminderView: View {
     @ObservedObject var model: ReminderOverlayModel
     
     // 宽度和高度范围限制
-    let minWidth: CGFloat = 200
+    let minWidth: CGFloat = 300
     let maxWidth: CGFloat = 400
     let maxHeight: CGFloat = 300
-
+    
     @State private var textSize: CGSize = .zero
-
+    
     // PreferenceKey 用于测量文本尺寸
     struct SizePreferenceKey: PreferenceKey {
         static var defaultValue: CGSize = .zero
@@ -44,36 +44,34 @@ struct FloatingReminderView: View {
             )
         }
     }
-
+    
     var body: some View {
-        ZStack(alignment: .topLeading) {
+        CharWrappedText(
+            text: model.message,
+            font: NSFont.preferredFont(forTextStyle: .title2),
+            textColor: .white
+        )
+        .fixedSize(horizontal: false, vertical: true)
+        .padding(.vertical, 10)
+        .padding(.horizontal, 10)
+        .background(
             RoundedRectangle(cornerRadius: 12)
                 .fill(Color.black.opacity(0.8))
-
-            CharWrappedText(
-                text: model.message,
-                font: NSFont.preferredFont(forTextStyle: .title2),
-                textColor: .white
-            )
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(.vertical, 6)
-                .padding(.horizontal, 10)
-                .background(
-                    GeometryReader { geo in
-                        Color.clear
-                            .preference(key: SizePreferenceKey.self,
-                                        value: geo.size)
-                    }
-                )
-        }
+        )
+        .background(
+            GeometryReader { geo in
+                Color.clear
+                    .preference(key: SizePreferenceKey.self,
+                                value: geo.size)
+            }
+        )
         .onPreferenceChange(SizePreferenceKey.self) { size in
             textSize = CGSize(width: size.width,
-                               height: size.height)
+                              height: size.height)
         }
         .frame(
             width: min(max(textSize.width, minWidth), maxWidth),
             height: min(textSize.height, maxHeight)
         )
-        .shadow(radius: 10)
     }
 }
