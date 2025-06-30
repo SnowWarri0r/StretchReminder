@@ -11,9 +11,11 @@
             <description><![CDATA[<h2>Release v1.0.5</h2>
 <p>Changes since v1.0.4:</p>
 <ul>
+<li>Update README.md</li>
+<li>修改图标</li>
 <li>UI调整</li></ul>
 ]]></description>
-            <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder-universal-v1.0.5.zip" length="3069855" type="application/octet-stream" sparkle:edSignature="ktJwU1yuDDNJXOhRO66ng9JP13J1jVm3PvtFRgGs4/PXDdor5EhabD4DgnLCdUVP+ykQDvoX2Rg4L4XNdbJtDA=="/>
+            <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder-universal-v1.0.5.zip" length="2587740" type="application/octet-stream" sparkle:edSignature="LjM/Jj3508NIuV9HI6JmnLjgX22IRxNV7DOfw0piucMA2dPTHFghUS0jYHOwo5bvSEPQGfqrOCJdBfXbt4enCw=="/>
             <sparkle:deltas>
                 <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder105-104.delta" sparkle:deltaFrom="104" length="44606" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="liro4WBB51qwGwxA65g+jxyD/D2NgbZZu7XaFXo26t2PVwM3WR6TB+v9pu3+Mrvc8/hGAWIswtYblvT2lWY3BA=="/>
                 <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder105-103.delta" sparkle:deltaFrom="103" length="85946" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="CkJei+0Hr18OiJq3Ph6FKkhbV/YYyfHwhGJ78HRkel6tsyASwmev7aQdUqyPxpKhha2B6ichvJl9Y/dOgd2WAA=="/>
