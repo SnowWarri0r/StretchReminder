@@ -114,11 +114,17 @@ class ReminderManager: ObservableObject {
         dispatchTimers[config.type] = []
         
         if let fireTimes = config.fireTimes {
+            // 取最小时间作为下次触发事件，避免错误
+            refreshNextFireDate(for: config.type)
+
             var timers: [DispatchSourceTimer] = []
-            for timeComponent in fireTimes {
-                if let t = makeFixedTimer(type: config.type,
-                                          at: timeComponent,
-                                          config: config) {
+            for (_, timeComp) in fireTimes.enumerated() {
+                let t = makeFixedTimer(
+                    type: config.type,
+                    at: timeComp,
+                    config: config
+                )
+                if let t = t {
                     timers.append(t)
                 }
             }
@@ -160,22 +166,31 @@ class ReminderManager: ObservableObject {
         schedule(config)
     }
     
+    private func refreshNextFireDate(for type: ReminderType) {
+        guard let times = configs[type]?.fireTimes else { return }
+        let earliest = times.compactMap(nextDate).min()
+        nextFireDateMap[type] = earliest
+    }
+    
     private func makeFixedTimer(type: ReminderType,
                                 at time: DateComponents,
                                 config: ReminderConfig) -> DispatchSourceTimer? {
         guard let next = nextDate(for: time) else { return nil }
-        nextFireDateMap[type] = next
-        
         let interval = next.timeIntervalSinceNow
+        
         let t = DispatchSource.makeTimerSource(queue: .main)
         t.schedule(deadline: .now() + interval, repeating: .never)
-        t.setEventHandler { [weak self] in
-            guard let self = self, !self.isPaused else { return }
+        t.setEventHandler { [weak self, weak t] in
+            guard let self = self, let timer = t, !self.isPaused else { return }
             self.showFloatingReminder(config)
+            // 当自己触发则可以清除
+            timer.cancel()
+            self.dispatchTimers[type]?.removeAll { $0 === timer }
             // 递归创建并跟踪
             if let nextTimer = self.makeFixedTimer(type: type, at: time, config: config) {
                 self.dispatchTimers[type, default: []].append(nextTimer)
             }
+            self.refreshNextFireDate(for: type)
         }
         t.resume()
         return t
@@ -234,11 +249,14 @@ class ReminderManager: ObservableObject {
         rt.schedule(wallDeadline: .now() + config.endDelay,
                     repeating: .never,
                     leeway: .seconds(1))
-        rt.setEventHandler { [weak self] in
-            guard let self = self else { return }
-            self.delegate?.reminderDidEnd(config.type)
-            self.pendingTypes.remove(config.type)
+        rt.setEventHandler { [weak self, weak rt] in
+            guard let self = self, let timer = rt else { return }
             DispatchQueue.main.async {
+                timer.cancel()
+                self.revertTimers[config.type] = nil
+                self.delegate?.reminderDidEnd(config.type)
+                self.pendingTypes.remove(config.type)
+                
                 if self.pendingTypes.isEmpty {
                     self.floatingWindows.forEach { $0.orderOut(nil) }
                     self.floatingWindows.removeAll()
@@ -246,6 +264,7 @@ class ReminderManager: ObservableObject {
                     self.updateFloatingContent()
                 }
             }
+            
         }
         rt.resume()
         revertTimers[config.type] = rt
@@ -259,23 +278,30 @@ class ReminderManager: ObservableObject {
         self.floatingOverlayModel = model
         let overlay = FloatingReminderView(model: model)
         
-        // 2. 托管到 NSHostingController
         let host = NSHostingController(rootView: overlay)
         host.view.wantsLayer = true
         host.view.layer?.backgroundColor = CGColor.clear
         host.view.layer?.isOpaque = false
-        let size = CGSize(width: 300, height: 100)
+        host.view.translatesAutoresizingMaskIntoConstraints = false
+
+        let minW = overlay.minWidth
+        let maxW = overlay.maxWidth
+        host.view.widthAnchor.constraint(greaterThanOrEqualToConstant: minW).isActive = true
+        host.view.widthAnchor.constraint(lessThanOrEqualToConstant: maxW).isActive = true
         
-        // 3. 居中计算
-        let screen = NSScreen.main?.visibleFrame ?? .zero
+        host.view.layoutSubtreeIfNeeded()
+
+        let fitting = host.view.fittingSize
+        let w = fitting.width
+        let h = min(fitting.height, overlay.maxHeight)
+
+        let screen = NSScreen.main!.visibleFrame
         let rect = NSRect(
-            x: screen.midX - size.width/2,
-            y: screen.midY - size.height/2,
-            width: size.width,
-            height: size.height
+            x: screen.midX - w/2,
+            y: screen.midY - h/2,
+            width: w, height: h
         )
         
-        // 4. 创建 borderless 窗口
         let window = FloatingWindow(
             contentRect: rect,
             styleMask: .borderless,
@@ -294,11 +320,9 @@ class ReminderManager: ObservableObject {
         
         window.alphaValue = 0  // 初始全透明
         
-        // 5. 强引用并显示
         floatingWindows.append(window)
         window.makeKeyAndOrderFront(nil)
         
-        // 6. 动画：淡入 → 停留 → 淡出
         NSAnimationContext.runAnimationGroup({ ctx in
             ctx.duration = 0.3
             window.animator().alphaValue = 1
@@ -311,7 +335,6 @@ class ReminderManager: ObservableObject {
                     window.orderOut(nil)
                     // 移除强引用
                     self.floatingWindows.removeAll { $0 === window }
-                    self.pendingTypes.removeAll()
                 })
             }
         })
