@@ -3,6 +3,25 @@
     <channel>
         <title>StretchReminder</title>
         <item>
+            <title>1.0.5</title>
+            <pubDate>Mon, 30 Jun 2025 06:47:33 +0000</pubDate>
+            <sparkle:version>105</sparkle:version>
+            <sparkle:shortVersionString>1.0.5</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.5</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h2>Release v1.0.5</h2>
+<p>Changes since v1.0.4:</p>
+<ul>
+<li>UI调整</li></ul>
+]]></description>
+            <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder-universal-v1.0.5.zip" length="3069855" type="application/octet-stream" sparkle:edSignature="ktJwU1yuDDNJXOhRO66ng9JP13J1jVm3PvtFRgGs4/PXDdor5EhabD4DgnLCdUVP+ykQDvoX2Rg4L4XNdbJtDA=="/>
+            <sparkle:deltas>
+                <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder105-104.delta" sparkle:deltaFrom="104" length="44606" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="liro4WBB51qwGwxA65g+jxyD/D2NgbZZu7XaFXo26t2PVwM3WR6TB+v9pu3+Mrvc8/hGAWIswtYblvT2lWY3BA=="/>
+                <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder105-103.delta" sparkle:deltaFrom="103" length="85946" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="CkJei+0Hr18OiJq3Ph6FKkhbV/YYyfHwhGJ78HRkel6tsyASwmev7aQdUqyPxpKhha2B6ichvJl9Y/dOgd2WAA=="/>
+                <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder105-102.delta" sparkle:deltaFrom="102" length="119274" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="jcTeA5ImiD9DzjUnB4RSs/2AIhlcuiCtZFFQ5PJlXF1cjighz4tdESCiDRvApYXoaDVJHnC2sJNh3FWgB/qJBA=="/>
+                <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder105-101.delta" sparkle:deltaFrom="101" length="151650" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="BLgKr9w9ylBtOSdxR1hx9eCHO03UEIuj6U6swJc3xtZ6ZsdsqwvotFcotMLTNQPN26kz5BTKIDlz/h2DuuvrCg=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.0.4</title>
             <pubDate>Mon, 30 Jun 2025 05:10:20 +0000</pubDate>
             <sparkle:version>104</sparkle:version>
@@ -41,29 +60,6 @@
             <sparkle:deltas>
                 <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder103-102.delta" sparkle:deltaFrom="102" length="87046" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="7IHU0rsgAXLyynT/InnHOICISKNlY6gQQmIgIT1R6fyLuhUMOdmuTk+lrcNTzH0JIRYmj81zkkhri3yjRnkyAQ=="/>
                 <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder103-101.delta" sparkle:deltaFrom="101" length="132862" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="1ojXmQSoeLWuXw7szZaY+0oQffe6+IcdA1cqQR5OZnIXUDqHeJDCeofnbT4ne0L3/+9msK/i7t+8ablTQqZzBw=="/>
-            </sparkle:deltas>
-        </item>
-        <item>
-            <title>1.0.2</title>
-            <pubDate>Fri, 27 Jun 2025 06:20:01 +0000</pubDate>
-            <sparkle:version>102</sparkle:version>
-            <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.5</sparkle:minimumSystemVersion>
-            <description><![CDATA[<h2>Release v1.0.2</h2>
-<p>Changes since v1.0.1:</p>
-<ul>
-<li>修改软件源</li>
-<li>修改版本号</li>
-<li>修改版本号</li>
-<li>Update objective-c-xcode.yml</li>
-<li>修复scheme问题</li>
-<li>feat.喝水提醒&&多语言支持&&合并提醒</li>
-<li>Update README.md</li>
-<li>update readme</li></ul>
-]]></description>
-            <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder-universal-v1.0.2.zip" length="3005342" type="application/octet-stream" sparkle:edSignature="xo/pQoZdAG38Ao4psWsTOdw1g5avrc31GFejDdefZzTFPwy/VysFXXFaeNbnh8Sh/jTHftIeL1IkCfMHAfrHAg=="/>
-            <sparkle:deltas>
-                <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder102-101.delta" sparkle:deltaFrom="101" length="113486" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="iZe4JjWiWbu6Qctcc1cHzYMHYYQK7m1ZLuGpTh/lxBEhbn85c3/y7e/YmRn3DNH0G37BBipl0TNZrSdhhbm0DQ=="/>
             </sparkle:deltas>
         </item>
     </channel>
