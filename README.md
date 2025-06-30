@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="128" alt="image" src="https://github.com/user-attachments/assets/92c40790-0acf-41f9-91c0-a820252a7bed" />
+  <img width="128" alt="image" src="https://github.com/user-attachments/assets/5cecbd32-5d16-4a79-94dd-f4db2cf50e91" />
 </p>
 
 <h1 align="center">WorkerReminder</h1>
