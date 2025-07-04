@@ -13,6 +13,18 @@
   <img src="https://img.shields.io/github/license/snowwarri0r/WorkerReminder" alt="License">
 </p>
 
+## 如何使用
+如果运行时提示“无法打开”，请执行以下命令解除安全限制：
+
+假设你解压的文件在 ~/Downloads/WorkerReminder.app
+如果拖入了应用，则将路径改为 /Applications/WorkerReminder.app
+
+1. 打开终端，输入：
+
+   sudo xattr -rd com.apple.quarantine ~/Downloads/WorkerReminder.app
+
+2. 然后 Finder 中右键点击 App → 打开 → 点击“仍要打开”
+
 ## 特性
 - [x] 开机自启设置
 - [x] 每45分钟提醒一次伸展，电脑休眠唤醒后提醒重置
