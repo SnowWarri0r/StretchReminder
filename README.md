@@ -26,14 +26,16 @@
 - [x] 检查更新
 
 ## 预览
-<img width="225" alt="image" src="https://github.com/user-attachments/assets/00652bac-aedc-4ca8-9e73-61c8f0c4b914" />
+<img width="233" alt="image" src="https://github.com/user-attachments/assets/263b8454-32f2-40b7-9856-5caf76d46125" />
 <img width="300" alt="image" src="https://github.com/user-attachments/assets/c810f9be-da9b-42e1-9ca1-d2ccca024623" />
 <img width="300" alt="image" src="https://github.com/user-attachments/assets/f9b1094a-1cd0-439d-aafa-dbb72c0f4ef2" />
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/980786aa-b374-4669-a601-bf48a5469961" />
 <img width="300" alt="image" src="https://github.com/user-attachments/assets/ef9a6765-51df-42dc-adfc-c5f89874134d" />
 <img width="300" alt="image" src="https://github.com/user-attachments/assets/5e8d93b3-0741-41e7-80de-24354d125ab2" />
 <img width="29" alt="image" src="https://github.com/user-attachments/assets/d308e535-41a6-43ee-8938-5c45358de75c" />
 <img width="31" alt="image" src="https://github.com/user-attachments/assets/6e0f5c4b-6fac-4879-b170-67017cd4f7bf" />
 <img width="28" alt="image" src="https://github.com/user-attachments/assets/2d27507d-fc8b-4b52-bfae-024cee0ee76e" />
+<img width="35" alt="image" src="https://github.com/user-attachments/assets/75b1e3a5-ea33-4e95-a3fb-0063f447bfda" />
 <img width="36" alt="image" src="https://github.com/user-attachments/assets/659799ff-976a-4c4f-85fa-ca0087ef3a0b" />
 <img width="32" alt="image" src="https://github.com/user-attachments/assets/b9253001-8e71-44ec-95e4-80d2414f5336" />
 
