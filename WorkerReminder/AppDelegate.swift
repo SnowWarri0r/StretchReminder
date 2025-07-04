@@ -47,6 +47,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             endDelay: 10,
             fireTimes: nil
         ))
+        
+        manager.addReminder(ReminderConfig(
+            type: .analLift,
+            message: String(localized: "reminder_message_analLift"),
+            interval: 90 * 60, // 每90分钟提醒一次
+            endDelay: 30, // 持续30秒
+            fireTimes: nil
+        ))
+        
         manager.addReminder(ReminderConfig(
             type: .orderFood,
             message: String(localized: "reminder_message_orderFood"),

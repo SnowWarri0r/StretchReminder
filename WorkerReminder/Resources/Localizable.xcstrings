@@ -103,6 +103,22 @@
         }
       }
     },
+    "menu_analLift_placeholder" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next anal lift in - minutes"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下次提肛还剩 - 分钟"
+          }
+        }
+      }
+    },
     "menu_check_update" : {
       "comment" : "检查更新",
       "extractionState" : "manual",
@@ -166,6 +182,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "开机自启"
+          }
+        }
+      }
+    },
+    "menu_next_analLift" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next anal lift in %d minutes"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下次提肛还剩%d分钟"
           }
         }
       }
@@ -234,6 +266,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "下次伸展还剩 %d 分钟"
+          }
+        }
+      }
+    },
+    "menu_not_set_analLift" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anal lift reminder time not set"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下次提肛时间未设置"
           }
         }
       }
@@ -336,6 +384,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "暂停提醒"
+          }
+        }
+      }
+    },
+    "menu_paused_analLift" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anal lift reminder paused"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下次提肛提醒已暂停"
           }
         }
       }
@@ -461,6 +525,22 @@
         }
       }
     },
+    "menu_trigger_analLift" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anal lift"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "提肛"
+          }
+        }
+      }
+    },
     "menu_trigger_drink" : {
       "localizations" : {
         "en" : {
@@ -571,6 +651,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "StretchReminder 有新版本"
+          }
+        }
+      }
+    },
+    "reminder_message_analLift" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🍑 Squeeze and lift! Keep your pelvic floor strong!"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🍑 别忘了提肛哦，悄悄锻炼健康常在～"
           }
         }
       }

@@ -5,23 +5,17 @@ import SwiftUI
 enum ReminderType: CaseIterable {
     case stretch
     case drink
+    case analLift
     case orderFood
     case eat
 }
 
 extension ReminderType {
-    var rawValue: String {
-        switch self {
-        case .stretch: return "stretch"
-        case .drink: return "drink"
-        case .orderFood: return "orderFood"
-        case .eat: return "eat"
-        }
-    }
     var localizedMessage: String {
         switch self {
         case .stretch: return String(localized: "reminder_message_stretch")
         case .drink: return String(localized: "reminder_message_drink")
+        case .analLift: return String(localized: "reminder_message_analLift")
         case .orderFood: return String(localized: "reminder_message_orderFood")
         case .eat: return String(localized: "reminder_message_eat")
         }

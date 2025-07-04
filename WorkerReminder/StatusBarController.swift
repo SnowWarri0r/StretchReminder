@@ -55,6 +55,11 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
         menu.addItem(drinkItem)
         countdownItems[.drink] = drinkItem
         
+        let analLiftItem = NSMenuItem(title: String(localized: "menu_analLift_placeholder"), action: nil, keyEquivalent: "")
+        analLiftItem.isEnabled = false
+        menu.addItem(analLiftItem)
+        countdownItems[.analLift] = analLiftItem
+        
         let orderFoodItem = NSMenuItem(title: String(localized: "menu_orderFood_placeholder"), action: nil, keyEquivalent: "")
         orderFoodItem.isEnabled = false
         menu.addItem(orderFoodItem)
@@ -81,6 +86,11 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
                                       , action: #selector(triggerDrink), keyEquivalent: "")
         triggerDrink.target = self
         triggerSubmenu.addItem(triggerDrink)
+        
+        let triggerAnalLift = NSMenuItem(title: String(localized: "menu_trigger_analLift")
+                                         , action: #selector(triggerAnalLift), keyEquivalent: "")
+        triggerAnalLift.target = self
+        triggerSubmenu.addItem(triggerAnalLift)
         
         let triggerOrderFood = NSMenuItem(title: String(localized: "menu_trigger_orderFood"), action: #selector(triggerOrderFood), keyEquivalent: "")
         triggerOrderFood.target = self
@@ -127,6 +137,8 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
                     item.title = String(localized: "menu_paused_stretch")
                 case .drink:
                     item.title = String(localized: "menu_paused_drink")
+                case .analLift:
+                    item.title = String(localized: "menu_paused_analLift")
                 case .orderFood:
                     item.title = String(localized: "menu_paused_orderFood")
                 case .eat:
@@ -140,6 +152,8 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
                     format = String(localized: "menu_next_stretch")
                 case .drink:
                     format = String(localized: "menu_next_drink")
+                case .analLift:
+                    format = String(localized: "menu_next_analLift")
                 case .orderFood:
                     format = String(localized: "menu_next_orderFood")
                 case .eat:
@@ -152,6 +166,8 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
                     item.title = String(localized: "menu_not_set_stretch")
                 case .drink:
                     item.title = String(localized: "menu_not_set_drink")
+                case .analLift:
+                    item.title = String(localized: "menu_not_set_analLift")
                 case .orderFood:
                     item.title = String(localized: "menu_not_set_orderFood")
                 case .eat:
@@ -184,6 +200,7 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
         switch type {
         case .stretch:    return "figure.cooldown"
         case .drink:      return "drop.fill"
+        case .analLift:   return "figure.strengthtraining.traditional"
         case .orderFood:  return "takeoutbag.and.cup.and.straw.fill"
         case .eat:        return "fork.knife.circle.fill"
         }
@@ -238,6 +255,10 @@ class StatusBarController: NSObject, NSMenuItemValidation, ReminderManagerDelega
     
     @objc private func triggerDrink() {
         reminderManager.triggerNow(for: .drink)
+    }
+    
+    @objc private func triggerAnalLift() {
+        reminderManager.triggerNow(for: .analLift)
     }
     
     @objc private func triggerOrderFood() {
