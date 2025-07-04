@@ -3,6 +3,29 @@
     <channel>
         <title>StretchReminder</title>
         <item>
+            <title>1.0.6</title>
+            <pubDate>Fri, 04 Jul 2025 08:48:02 +0000</pubDate>
+            <sparkle:version>106</sparkle:version>
+            <sparkle:shortVersionString>1.0.6</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.5</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h2>Release v1.0.6</h2>
+<p>Changes since v1.0.5:</p>
+<ul>
+<li>修改版本号</li>
+<li>Update README.md</li>
+<li>Update README.md</li>
+<li>feat.增加提肛提醒</li></ul>
+]]></description>
+            <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder-universal-v1.0.6.zip" length="2588814" type="application/octet-stream" sparkle:edSignature="JY4U8+9BfR4AW9mPBkj/FSnXiD/5uvMaX8D1+OS3diaLuyjclhC7Ym9zVq5LyNBWjdzcBClicfkvCy53v30fCg=="/>
+            <sparkle:deltas>
+                <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder106-105.delta" sparkle:deltaFrom="105" length="34198" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="/JjMauTy6QnsG2sd6IEmcn3s3BmJnGjAAWinzyc+jXrBDykLsas+CNPRuuEIXdciIXignpK1540wvnipIvzJAg=="/>
+                <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder106-104.delta" sparkle:deltaFrom="104" length="1285858" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="Tuu3/qIsfPML0LPFEYkSbkyamY1frZGF9g7aqloo1flMXIKtJHYI+z9Otw7wxZWsCKYLfu0gKmCPjkE91W78AQ=="/>
+                <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder106-103.delta" sparkle:deltaFrom="103" length="1325810" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="FS25D+jeAoaZyvIaCTASQEArV+ruH1S6TCzx6uBlKauIl4b3g7ETP+ZXqF64RoQY3WOVzN/h69U4buavLHUOAQ=="/>
+                <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder106-102.delta" sparkle:deltaFrom="102" length="1354026" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="WXH56eoqwQXzlw9nbQ6fGHgdpAOH/31+qX9L5s4n7dr3XsfWA4oEP2s4AdL8HbZIUEyzY7fhiqkn5KESAmp9CA=="/>
+                <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder106-101.delta" sparkle:deltaFrom="101" length="1386790" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="nSzqfHd+3sOTk/Sa+wZ/ssdvNjirzUBHbx273a4U7wOgrxMmik3fcYrfTa51fk1Cri2ilkvswtelFq8CftadCg=="/>
+            </sparkle:deltas>
+        </item>
+        <item>
             <title>1.0.5</title>
             <pubDate>Mon, 30 Jun 2025 06:47:33 +0000</pubDate>
             <sparkle:version>105</sparkle:version>
@@ -39,29 +62,6 @@
                 <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder104-103.delta" sparkle:deltaFrom="103" length="84430" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="qYnz3KdkWNtl6ZLGiVVaOMtMSUPPUDZ+I3tRf9+YF1JZASmkWIZR1cS30y+BwRUz4I9EfWtzsMMRURyMfslbBg=="/>
                 <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder104-102.delta" sparkle:deltaFrom="102" length="121294" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="//Pv3h3rWm0mUyKSEaCAan8tU1t0cOaevCXapT42dfgd+aAW04tVhZJ3Rsqd/AXijUasDlmvDSRvqK+vXjacCQ=="/>
                 <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder104-101.delta" sparkle:deltaFrom="101" length="152674" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="oAP3JcJVdPDruHhfShaqDaRKwWB3Cl3rLTuU2iUqLCP2DJoAksxlMtmzgFwiSxZtZbo6LZZciB319k/Hp+y7Bg=="/>
-            </sparkle:deltas>
-        </item>
-        <item>
-            <title>1.0.3</title>
-            <pubDate>Fri, 27 Jun 2025 09:42:52 +0000</pubDate>
-            <sparkle:version>103</sparkle:version>
-            <sparkle:shortVersionString>1.0.3</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.5</sparkle:minimumSystemVersion>
-            <description><![CDATA[<h2>Release v1.0.3</h2>
-<p>Changes since v1.0.2:</p>
-<ul>
-<li>fix updater</li>
-<li>fix</li>
-<li>Update README.md</li>
-<li>feat.点外卖&&吃饭提醒&&多提醒图标轮播</li>
-<li>Update README.md</li>
-<li>Update README.md</li>
-<li>Update README.md</li></ul>
-]]></description>
-            <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder-universal-v1.0.3.zip" length="3036281" type="application/octet-stream" sparkle:edSignature="EwlJJKhjdvkPEB7BJNiJgrCT/i7Mtz8fHIcVjnIGlU9PCtEp0hmkYW3rlqeU4gklkrf+Qjt1RSXUPKQXNd1fCw=="/>
-            <sparkle:deltas>
-                <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder103-102.delta" sparkle:deltaFrom="102" length="87046" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="7IHU0rsgAXLyynT/InnHOICISKNlY6gQQmIgIT1R6fyLuhUMOdmuTk+lrcNTzH0JIRYmj81zkkhri3yjRnkyAQ=="/>
-                <enclosure url="https://snowwarri0r.github.io/WorkerReminder/WorkerReminder103-101.delta" sparkle:deltaFrom="101" length="132862" type="application/octet-stream" sparkle:deltaFromSparkleExecutableSize="864640" sparkle:deltaFromSparkleLocales="de,he,ar,el,ja,fa,en" sparkle:edSignature="1ojXmQSoeLWuXw7szZaY+0oQffe6+IcdA1cqQR5OZnIXUDqHeJDCeofnbT4ne0L3/+9msK/i7t+8ablTQqZzBw=="/>
             </sparkle:deltas>
         </item>
     </channel>
